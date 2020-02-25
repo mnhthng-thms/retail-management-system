@@ -10,7 +10,7 @@ const development = {
 
 const production = {
   name: "Server Production",
-  dbURI: "mongodb+srv://user0:user0123@cluster0-nzzqi.mongodb.net/test?retryWrites=true&w=majority",
+  dbURI: "mongodb+srv://user0:admingate@cluster0-nzzqi.mongodb.net/test?retryWrites=true&w=majority",
   dbName: "inventory",
   token: {
     secret: process.env.JWT_SECRET,
