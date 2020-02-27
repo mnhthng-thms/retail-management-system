@@ -17,7 +17,7 @@ const createOne = (colName) => (req, res) => {
     })
     .then(function (doc) {
       if (!doc) {
-        res.status(400).json({ message: "Server received the requests but sent back no response! " });
+        res.status(500).json({ message: "Server received the requests but sent back no response! " });
       } else {
         // HTTP code 201: response fulfilled, new resource created
         res.status(201).json(doc)
@@ -26,7 +26,7 @@ const createOne = (colName) => (req, res) => {
     .catch(function (error) {
       debug(`Errors happened at ${colName}.createOne: ${error.toString()}`);
       debug(error.stack);
-      res.status(400).json({ message: error.toString() });
+      res.status(500).json({ message: error.toString() });
     })
 };
 
@@ -47,7 +47,7 @@ const getOne = (colName) => (req, res) => {
     .catch(function (error) {
       debug(`Errors happened at ${colName}.getOne: ${error.toString()}`);
       debug(error.stack);
-      res.status(400).json({ message: error.toString() });
+      res.status(500).json({ message: error.toString() });
     })
 };
 
@@ -67,7 +67,7 @@ const getMany = (colName) => (req, res) => {
     .catch(function (error) {
       debug(`Errors happened at ${colName}.getMany: ${error.toString()}`);
       debug(error.stack);
-      res.status(400).json({ message: error.toString() });
+      res.status(500).json({ message: error.toString() });
     })
 };
 

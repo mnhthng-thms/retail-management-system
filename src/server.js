@@ -16,14 +16,7 @@ const MODE = config[ENV]["name"];
 
 const userSignin = require('./api/controllers/user.signin');
 const userSignup = require('./api/controllers/user.signup');
-const userVerify = require('./api/controllers/user.verify');
 const userRouter = require('./api/routes/user.router');
-const transportRecordRouter = require('./api/routes/transportRecord.router');
-const transferRequestRouter = require('./api/routes/transferRequest.router');
-const supplierRouter = require('./api/routes/supplier.router');
-const storeRouter = require('./api/routes/store.router');
-const productRouter = require('./api/routes/product.router');
-const customerReceiptRouter = require('./api/routes/customerReceipt.router');
 
 app.use(cors());
 app.disable('x-powered-by');
@@ -45,11 +38,8 @@ process
 // Routes return JWT payload
 app.post('/api/signin', userSignin);
 app.post('/api/signup', userSignup);
-app.post('/api/verify', userVerify);
 // Routes consume JWT payload
-[userRouter, productRouter, storeRouter,
-  supplierRouter, customerReceiptRouter,
-  transferRequestRouter, transportRecordRouter].forEach(router => app.use(router));
+app.use(userRouter);
 
 // Client-side routes  
 app.use(express.static(path.join(__dirname, 'views')));

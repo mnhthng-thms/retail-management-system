@@ -4,8 +4,6 @@ const pwd = require('../../utils/pwd');
 const { getDbName, connectPromise } = require('../utils/db');
 const nodeUtil = require('util');
 
-// https://www.freecodecamp.org/news/securing-node-js-restful-apis-with-json-web-auths-9f811a92bb52/
-
 const signupUser = (req, res) => {
   const EMAIL = req.body.email;
   const PHONE = req.body.phone;
