@@ -4,7 +4,8 @@ const { getDbName, connectPromise } = require('../utils/db');
 const nodeUtil = require('util');
 
 /* Functional interfaces implmenting Stategy pattern: 
-   CRUD database operations involving singular data request. 
+   CRUD database operations involving singular data request
+   Can be re-used among multiple database collections. 
      @param (colName) : instanceof `mongodb.collection`
      @param (req,res) : instanceof Node `Request` object, `Response` object 
 */

@@ -51,7 +51,8 @@ const applyProtection = (isForAdminOnly) => (req, res, next) => {
       next();
     }
     else {
-      res.status(401).json({ message: 'Unauthorised!' });
+      debug(`Unauthorised access attempt caught!`);
+      res.status(403).json({ message: 'Unauthorised!' });
     }
   }
 }
