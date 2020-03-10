@@ -8,11 +8,6 @@ This project is my code submission for Unit 16-'Cloud Computing' of [Pearson BTE
 ### Web Application
 
 - [ ] `Webpack`
-      Bundling guide:
-
-  - [_link_](https://medium.com/@binyamin/creating-a-node-express-webpack-app-with-dev-and-prod-builds-a4962ce51334)
-  - [better link](https://www.ivarprudnikov.com/static-website-multiple-html-pages-using-webpack-plus-github-example/)
-
 - [ ] Documentation
 - [ ] Internalisation (i18n): support for Vietnamese language
 - [ ] Tests & Code coverage
