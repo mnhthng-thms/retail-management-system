@@ -11,14 +11,10 @@ This project is my code submission for Unit 16-'Cloud Computing' of [Pearson BTE
 
 ### Web Application
 
-- [ ] `Webpack`
-- [ ] Internalisation (i18n): support for Vietnamese language
+- [ ] `Webpack` web assets bundling
+- [ ] Internalisation (_i18n_): support for Vietnamese language
 - [ ] Tests & Code coverage
 - [ ] Security improvements
-
-### MongoDB
-
-- [ ] Data durability: write concern & writing ahead to in-disk journal files
 
 ## Special Thanks
 
