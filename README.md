@@ -8,11 +8,9 @@ This project is my code submission for Unit 16-'Cloud Computing' of [Pearson BTE
 ### Web Application
 
 - [ ] `Webpack`
-- [ ] Documentation
 - [ ] Internalisation (i18n): support for Vietnamese language
 - [ ] Tests & Code coverage
 - [ ] Security improvements
-- [ ] Electron-powered client GUI
 
 ### MongoDB
 
