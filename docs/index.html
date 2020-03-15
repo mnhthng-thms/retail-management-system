@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./public/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/picnic" />
+    <style>
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #888; 
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555; 
+      }
+
+      body {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      .tab-content {
+        padding-top: 5px;
+      }
+      img {
+        max-width: fit-content;
+        max-height: fit-content;
+      }
+      .table-wrapper {
+        padding-right: 5px;
+        padding-bottom: 5px;
+      }
+      td {
+        background-color: #ffffff;
+        border: 1px solid #1e1e1e;
+      }
+    </style>
+    <title>Documentation:: Retail Management System</title>
+  </head>
+  <body>
+    <div class="tabs four">
+      <input id="tab-1" type="radio" name="tab-group" checked />
+      <label
+        class="pseudo button toggle warning"
+        for="tab-1"
+        style="color: #d73232"
+        >Warnings
+      </label>
+      <input id="tab-2" type="radio" name="tab-group" />
+      <label class="pseudo button toggle" for="tab-2">Use Case Diagram</label>
+      <input id="tab-3" type="radio" name="tab-group" />
+      <label class="pseudo button toggle" for="tab-3">Client-Side Routes</label>
+      <input id="tab-4" type="radio" name="tab-group" />
+      <label class="pseudo button toggle" for="tab-4">Server-Side Routes</label>
+      <div class="row">
+        <div class="tab-content" id="content-1">
+          <ul>
+            <li>
+              Only development script is available, production script is not
+              ready yet
+            </li>
+            <li>
+              So far this source code has only been developed for running on
+              Linux environment only. If you're using a Windows machine, you
+              need to install
+              <a href="https://www.npmjs.com/package/cross-env"
+                ><em>cross-env</em></a
+              >
+              dependency and to do some hacks to make this code run properly on
+              your machine!
+            </li>
+          </ul>
+        </div>
+
+        <div class="tab-content" id="content-2">
+          <img
+            src="./assets/images/use-case-diagram.png"
+            alt="Find this image in docs/assets/images folder"
+          />
+        </div>
+
+        <div class="tab-content" id="content-3">
+          <div class="table-wrapper">
+            <table>
+              <tr>
+                <th>Route</th>
+                <th>System behaviours (observable in web browser)</th>
+              </tr>
+              <tr>
+                <td><pre>/</pre></td>
+                <td rowspan="2">
+                  Server serves the static login page (<em>login.html</em>)
+                </td>
+              </tr>
+              <tr>
+                <td><pre>/login</pre></td>
+              </tr>
+              <tr>
+                <td><pre>/user</pre></td>
+                <td>
+                  If no user is logged in yet, browser re-directs to login page.
+                  Otherwise, static <em>user.html</em> page is served, which
+                  displays list of all existed user accounts in the system. User
+                  can edit or remove any user’s account info on this page.
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <pre>/register_user</pre>
+                </td>
+                <td>
+                  If no user is loggedin yet, browser re-directs to login page.
+                  Otherwise, static <em>register_user.html</em> page is served.
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-content" id="content-4">
+          <div class="table-wrapper">
+            <table>
+              <tr>
+                <th>Route</th>
+                <th colspan="2">HTTP request (request type and content)</th>
+                <th colspan="2">HTTP response (request type and content)</th>
+                <th>System behaviours explained</th>
+              </tr>
+              <tr>
+                <td rowspan="3"><pre>/api/signin</pre></td>
+                <td rowspan="3"><pre>POST</pre></td>
+                <td rowspan="3">
+                  Request header contains input <em>login credentials</em>
+                </td>
+                <td><pre>200</pre></td>
+                <td>
+                  JSON contains returned token string storing user session
+                </td>
+                <td>
+                  The returned token string will be stored in web browser local
+                  session (<em>localStorage</em>)
+                </td>
+              </tr>
+              <tr>
+                <td><pre>401</pre></td>
+                <td rowspan="2">
+                  JSON with warning message
+                </td>
+                <td>
+                  User login credentials are incorrect
+                </td>
+              </tr>
+              <tr>
+                <td><pre>500</pre></td>
+                <td>
+                  Server error, unable to process
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="3"><pre>/api/signup</pre></td>
+                <td rowspan="3"><pre>POST</pre></td>
+                <td rowspan="3">
+                  Request header contains <em>token string</em> of user making
+                  the request; request body is a JSON containing
+                  <em>information of to-be-registered user</em>
+                </td>
+                <td><pre>201</pre></td>
+                <td>
+                  JSON contains returned token string for successfully created
+                  user
+                </td>
+                <td>
+                  New user account is created successfully
+                </td>
+              </tr>
+              <tr>
+                <td><pre>409</pre></td>
+                <td rowspan="2">
+                  JSON with warning message
+                </td>
+                <td>
+                  User with the same email/phone number has already existed in
+                  database
+                </td>
+              </tr>
+              <tr>
+                <td><pre>500</pre></td>
+                <td>
+                  Server error, unable to process
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="3"><pre>/api/user</pre></td>
+                <td rowspan="3"><pre>GET</pre></td>
+                <td rowspan="3">
+                  Request header contains <em>token string</em> of the user
+                  making the request; request body is empty
+                </td>
+                <td><pre>200</pre></td>
+                <td>
+                  JSON contains list of all user accounts in database
+                </td>
+                <td>
+                  Data from JSON will be rendered and displayed to currently
+                  logged-in user in <em>user.html</em>
+                </td>
+              </tr>
+              <tr>
+                <td><pre>404</pre></td>
+                <td rowspan="2">
+                  JSON with warning message
+                </td>
+                <td>
+                  There’s something wrong with the request (for instance, string
+                  token of current user is not found in web browser’s local
+                  session)
+                </td>
+              </tr>
+              <tr>
+                <td><pre>500</pre></td>
+                <td>
+                  Server error, unable to process
+                </td>
+              </tr>
+              <tr>
+                <td rowspan="10"><pre>/api/user/{userId}</pre></td>
+                <td rowspan="5"><pre>PUT</pre></td>
+                <td rowspan="5">
+                  Request header contains <em>token string</em> of the user
+                  making the request; request body is JSON contains
+                  <em>ID of to-be-updated user</em>
+                </td>
+                <td>
+                  <pre>200</pre>
+                </td>
+                <td>JSON contains information of successfully updated user</td>
+                <td>
+                  User is informed that the requested user information is
+                  successfully updated.
+                </td>
+              </tr>
+              <tr>
+                <td><pre>401</pre></td>
+                <td rowspan="4">JSON with warning message</td>
+                <td>Server receives no authentication information</td>
+              </tr>
+              <tr>
+                <td><pre>403</pre></td>
+                <td>Requester is non-admin & unauthorised</td>
+              </tr>
+              <tr>
+                <td><pre>404</pre></td>
+                <td>Server sends back no response from the given request</td>
+              </tr>
+              <tr>
+                <td>
+                  <pre>409</pre>
+                </td>
+                <td>
+                  Request is in conflict with database resource, can’t be
+                  processed
+                </td>
+              </tr>
+              <td rowspan="5"><pre>DELETE</pre></td>
+                <td rowspan="5">
+                  Request header contains <em>token string</em> of the user
+                  making the request; request body is JSON contains
+                  <em>ID of to-be-removed user</em>
+                </td>
+                <td>
+                  <pre>200</pre>
+                </td>
+                <td>JSON contains information of successfully removed user</td>
+                <td>
+                  User is informed that the requested user information is
+                  successfully removed.
+                </td>
+              </tr>
+              <tr>
+                <td><pre>401</pre></td>
+                <td rowspan="4">JSON with warning message</td>
+                <td>Server receives no authentication information</td>
+              </tr>
+              <tr>
+                <td><pre>403</pre></td>
+                <td>Requester is non-admin & unauthorised</td>
+              </tr>
+              <tr>
+                <td><pre>404</pre></td>
+                <td>Server sends back no response from the given request</td>
+              </tr>
+              <tr>
+                <td>
+                  <pre>409</pre>
+                </td>
+                <td>
+                  Request is in conflict with database resource, can’t be
+                  processed
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

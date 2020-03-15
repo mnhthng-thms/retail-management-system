@@ -3,6 +3,10 @@
 Web Application Prototype for Cloud-based Retail Management System.
 This project is my code submission for Unit 16-'Cloud Computing' of [Pearson BTEC Higher National Diploma in Computing Level 5](https://qualifications.pearson.com/en/qualifications/btec-higher-nationals.html).
 
+## Screenshots
+
+![Front-end screenshots](/docs/assets/images/screenshots.gif)
+
 ## TODOs for later versions
 
 ### Web Application
